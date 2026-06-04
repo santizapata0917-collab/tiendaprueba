@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const Producto = require("../models/producto.model");
+const verificarApiKey =
+require("../middlewares/apiKey.middleware");
+router.use(verificarApiKey);
 
 // CREATE
 router.post("/", async (req, res) => {
@@ -18,7 +21,9 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     try {
         const productos = await Producto.find();
-        res.json(productos);
+        res.render("productos", {
+    productos
+});
     } catch (error) {
         res.status(500).json({ mensaje: error.message });
     }

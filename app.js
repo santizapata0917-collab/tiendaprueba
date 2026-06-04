@@ -5,7 +5,13 @@ const app = express();
 
 require("./config/db");
 
+// Middlewares
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
+// Configurar EJS
+app.set("view engine", "ejs");
 
 // Importar rutas
 const productosRoutes = require("./routes/productos.routes");
