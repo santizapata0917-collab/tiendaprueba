@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Marketplace - Productos</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            background:
+            linear-gradient(
+            135deg,
+            #0f172a,
+            #1e293b,
+            #312e81);
+
+            padding:40px;
+        }
+
+        .header{
+
+            text-align:center;
+
+            margin-bottom:50px;
+        }
+
+        .header h1{
+
+            font-size:3rem;
+
+            color:white;
+
+            margin-bottom:10px;
+        }
+
+        .header p{
+
+            color:#cbd5e1;
+        }
+
+        .gradient{
+
+            background:
+            linear-gradient(
+            90deg,
+            #38bdf8,
+            #818cf8,
+            #c084fc);
+
+            -webkit-background-clip:text;
+
+            -webkit-text-fill-color:transparent;
+        }
+
+        .volver{
+
+            display:inline-block;
+
+            margin-bottom:40px;
+
+            padding:12px 25px;
+
+            text-decoration:none;
+
+            color:white;
+
+            border-radius:12px;
+
+            background:
+            rgba(255,255,255,.1);
+
+            transition:.3s;
+        }
+
+        .volver:hover{
+
+            background:
+            rgba(255,255,255,.2);
+
+            transform:translateY(-3px);
+        }
+
+        .productos{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(300px,1fr));
+
+            gap:30px;
+        }
+
+        .card{
+
+            background:
+            rgba(255,255,255,.08);
+
+            backdrop-filter:blur(15px);
+
+            border:
+            1px solid rgba(255,255,255,.1);
+
+            border-radius:25px;
+
+            padding:25px;
+
+            transition:.4s;
+
+            position:relative;
+
+            overflow:hidden;
+        }
+
+        .card::before{
+
+            content:"";
+
+            position:absolute;
+
+            top:0;
+            left:0;
+
+            width:100%;
+            height:5px;
+
+            background:
+            linear-gradient(
+            90deg,
+            #38bdf8,
+            #818cf8,
+            #c084fc);
+        }
+
+        .card:hover{
+
+            transform:
+            translateY(-10px);
+
+            box-shadow:
+            0 20px 40px
+            rgba(0,0,0,.3);
+        }
+
+        .icono{
+
+            font-size:3rem;
+
+            margin-bottom:15px;
+        }
+
+        .nombre{
+
+            color:white;
+
+            font-size:1.5rem;
+
+            font-weight:700;
+
+            margin-bottom:15px;
+        }
+
+        .descripcion{
+
+            color:#cbd5e1;
+
+            margin-bottom:25px;
+
+            line-height:1.7;
+        }
+
+        .precio{
+
+            font-size:2rem;
+
+            font-weight:800;
+
+            color:#22c55e;
+        }
+
+        .badge{
+
+            position:absolute;
+
+            top:15px;
+            right:15px;
+
+            padding:8px 15px;
+
+            border-radius:50px;
+
+            background:
+            rgba(34,197,94,.15);
+
+            color:#22c55e;
+
+            font-size:.8rem;
+
+            font-weight:600;
+        }
+
+        .empty{
+
+            text-align:center;
+
+            color:white;
+
+            font-size:1.3rem;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <a href="."
+       class="volver">
+
+        ← Volver al Inicio
+
+    </a>
+
+    <div class="header">
+
+        <h1>
+
+            🛍 Marketplace
+
+            <span class="gradient">
+                Productos
+            </span>
+
+        </h1>
+
+        <p>
+
+            Productos obtenidos desde una API protegida con API Key.
+
+        </p>
+
+    </div>
+
+    <% if(productos.length > 0){ %>
+
+        <div class="productos">
+
+            <% productos.forEach(producto => { %>
+
+                <div class="card">
+
+                    <div class="badge">
+                        Disponible
+                    </div>
+
+                    <div class="icono">
+                        📦
+                    </div>
+
+                    <h2 class="nombre">
+                        <%= producto.nombre %>
+                    </h2>
+
+                    <p class="descripcion">
+                        <%= producto.descripcion %>
+                    </p>
+
+                    <div class="precio">
+
+                        $ <%= producto.precio.toLocaleString() %>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="empty">
+
+            No hay productos registrados.
+
+        </div>
+
+    <% } %>
+
+</body>
+</html>

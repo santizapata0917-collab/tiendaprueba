@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Productos</title>
+</head>
+
+<body>
+
+<h1>Productos</h1>
+
+<% productos.forEach(producto => { %>
+
+    <div>
+
+        <h3>
+            <%= producto.nombre %>
+        </h3>
+
+        <p>
+            <%= producto.descripcion %>
+        </p>
+
+        <p>
+            $ <%= producto.precio %>
+        </p>
+
+        <hr>
+
+    </div>
+
+<% }) %>
+
+</body>
+
+</html>
