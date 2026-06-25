@@ -9,13 +9,13 @@ const listarProductos = async (req, res) => {
         console.log("API_KEY:", process.env.API_KEY);
 
         const respuesta = await axios.get(
-            `${process.env.BACKEND_URL}/productos`,
-            {
-                headers: {
-                    "x-api-key": process.env.API_KEY
-                }
-            }
-        );
+    `${req.protocol}://${req.get("host")}/api/productos`,
+    {
+        headers: {
+            "x-api-key": process.env.API_KEY
+        }
+    }
+);
 
         res.render("productos", {
             productos: respuesta.data

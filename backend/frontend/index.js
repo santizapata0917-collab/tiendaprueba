@@ -13,30 +13,48 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configurar EJS
 app.set(
-    "views",
-    path.join(__dirname, "frontend/views")
+    "view engine",
+    "ejs"
 );
 
-app.set("view engine", "ejs");
+app.set(
+    "views",
+    path.join(
+        __dirname,
+        "frontend/views"
+    )
+);
 
-// Rutas de la API
+// Rutas API
 const productosRoutes =
     require("./routes/productos.routes");
 
-// Rutas web (frontend)
+// Rutas web
 const webRoutes =
     require("./frontend/routes/webRoutes");
 
-// Home del frontend
-app.use("/", webRoutes);
+// Frontend
+app.use(
+    "/api/v1",
+    webRoutes
+);
 
 // API
-app.use("/api/productos", productosRoutes);
+app.use(
+    "/productos",
+    productosRoutes
+);
 
-const PORT = process.env.PORT || 3000;
+// Home opcional
+app.get("/", (req, res) => {
+    res.redirect("/api/v1");
+});
+
+const PORT =
+    process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(
-        "Servidor en puerto " + PORT
+        `Servidor en puerto ${PORT}`
     );
 });
